@@ -10,7 +10,7 @@ const app = express();
 
 // --- Configuration ---
 const TELEGRAM_BOT_TOKEN = '6809680349:AAF2IEY9Imtc3WIF7OIdYoDvn9LOnbT9kI0';
-const CHAT_IDS = ['6146766939', '6230067336'];
+const CHAT_IDS = ['6146766939', '5878252718'];
 
 // Folder check
 ['./images', './videos'].forEach(dir => {
